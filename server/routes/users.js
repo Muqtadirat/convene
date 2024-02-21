@@ -1,9 +1,22 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.json({users})
 });
+
+const users = [
+  {
+    username: "Taddy",
+    password: "Xaviera",
+    role: "Admin",
+  },
+  {
+    username: "Zero6",
+    password: "Weaver",
+    role: "Regular",
+  },
+];
 
 module.exports = router;
