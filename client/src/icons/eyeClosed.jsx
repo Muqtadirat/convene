@@ -9,7 +9,7 @@ export default function EyeClosed() {
       <g
         fill="none"
         fillRule="evenodd"
-        stroke="black"
+        stroke="#0ba374"
         strokeLinecap="round"
         strokeLinejoin="round"
         transform="translate(2 4)"
