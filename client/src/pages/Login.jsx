@@ -8,9 +8,21 @@ import styles from "./styles/Forms.module.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
 
   const togglePasswordVisbility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -22,7 +34,7 @@ const Login = () => {
       </div>
 
       <div className={styles.formWrapper}>
-        <Form>
+        <Form action="get">
           <FullLogo />
           <div>
             <h2> Login with your username</h2>
@@ -33,13 +45,20 @@ const Login = () => {
             type="text"
             name="username"
             variant="unique"
+            autoComplete="on"
+            value={formData.username}
+            onChangeHandler={handleInputChange}
           />
+
           <div className={styles.passwordBox}>
             <Input
               type={showPassword ? "text" : "password"}
               name="password"
               label="Password"
               variant="unique"
+              autoComplete="off"
+              value={formData.password}
+              onChangeHandler={handleInputChange}
             />
 
             <Button

@@ -1,6 +1,6 @@
 import styles from "./Input.module.css";
 
-const Input = ({ variant, type, id, name, placeholder, label, onChangeHandler, value }) => {
+const Input = ({ variant, type, id, name, placeholder, label, onChangeHandler, value, autoComplete }) => {
   return (
     <div className={styles.inputWrapper}>
       <input
@@ -11,6 +11,7 @@ const Input = ({ variant, type, id, name, placeholder, label, onChangeHandler, v
         placeholder={placeholder}
         onChange={onChangeHandler}
         value={value}
+        autoComplete={autoComplete}
         required
         className={styles.input}
       />
