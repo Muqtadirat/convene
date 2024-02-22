@@ -1,6 +1,20 @@
 var express = require('express');
 const router = express.Router();
 
+const users = [
+  {
+    username: "Taddy",
+    password: "Xaviera",
+    role: "Admin",
+  },
+  {
+    username: "Zero6",
+    password: "Weaver",
+    role: "Regular",
+  },
+];
+
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.json({users})
@@ -15,17 +29,5 @@ router.post('/', function(req, res, next) {
   res.status(201).json({ message: 'User created successfully', user: newUser });
 });
 
-const users = [
-  {
-    username: "Taddy",
-    password: "Xaviera",
-    role: "Admin",
-  },
-  {
-    username: "Zero6",
-    password: "Weaver",
-    role: "Regular",
-  },
-];
 
 module.exports = router;
