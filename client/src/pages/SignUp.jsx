@@ -4,7 +4,7 @@ import Form from "src/components/form";
 import { Input, Button } from "src/components/shared";
 import Biker from "../assets/Pixel_Bikers.mp4";
 import { FullLogo, EyeClosed, EyeOpen, BackArrow } from "src/icons";
-// import FetchUsers from "src/lib/api/users";
+import FetchUsers from "src/lib/api/users";
 import styles from "./styles/Forms.module.css";
 
 const SignUp = () => {
@@ -23,18 +23,18 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  //   useEffect(() => {
-  //     const updateUsers = async () => {
-  //       try {
-  //         const data = await FetchUsers();
-  //         setUsers(data.users);
-  //       } catch (error) {
-  //         console.error("Error fetching user:", error);
-  //       }
-  //     };
+  // useEffect(() => {
+  //   const updateUsers = async () => {
+  //     try {
+  //       const data = await FetchUsers();
+  //       setUsers(data.users);
+  //     } catch (error) {
+  //       console.error("Error fetching user:", error);
+  //     }
+  //   };
 
-  //     updateUsers();
-  //   }, []);
+  //   updateUsers();
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const SignUp = () => {
     }));
   };
 
-  const validateInput = (e) => {
+  const validateInput = async (e) => {
     e.preventDefault();
     const { username, password, confirmPassword } = formData;
     const inputError = {};
@@ -71,8 +71,15 @@ const SignUp = () => {
     setFormError(inputError);
 
     if (Object.keys(inputError).length === 0) {
-      setIsSubmitted(true);
-      navigate("/dashboard");
+      try {
+        const newUser = { username, password, role: "Regular" };
+         const response = await FetchUsers("POST", newUser);
+        setIsSubmitted(true);
+        navigate("/dashboard");
+        console.log("New user response:", response);
+      } catch (error) {
+        console.error("Error signing up:", error);
+      }
     }
   };
 
@@ -85,7 +92,7 @@ const SignUp = () => {
       </div>
 
       <div className={styles.formWrapper}>
-        <Form action="" method="get" onSubmit={validateInput}>
+        <Form action="" method="post" onSubmit={validateInput}>
           <Link to="/">
             <div className={styles.backBtn}>
               <BackArrow alt="Back arrow" />
