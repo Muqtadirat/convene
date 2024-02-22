@@ -8,6 +8,7 @@ const Button = ({
   className,
   type,
   onClickHandler,
+  disabled
 }) => {
   return (
     <button
@@ -15,6 +16,7 @@ const Button = ({
       style={{ width: width }}
       type={type}
       onClick={onClickHandler}
+      disabled={disabled}
       className={clsx(styles.btn, className)}
     >
       {children}

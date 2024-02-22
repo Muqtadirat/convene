@@ -52,6 +52,23 @@
   background-color: transparent;
 }
 
+.error {
+  color: var(--error);
+  font-size: 18px;
+}
+
+.backBtn {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: 40px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+}
+
 @media (max-width: 480px) {
   .videoBox {
     display: none;

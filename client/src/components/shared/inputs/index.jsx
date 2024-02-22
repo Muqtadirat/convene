@@ -1,6 +1,18 @@
+// import { useFormContext } from "react-hook-form";
 import styles from "./Input.module.css";
 
-const Input = ({ variant, type, id, name, placeholder, label, onChangeHandler, value, autoComplete }) => {
+const Input = ({
+  variant,
+  type,
+  id,
+  name,
+  placeholder,
+  label,
+  onChangeHandler,
+  value,
+  autoComplete,
+}) => {
+  // const { register } = useFormContext();
   return (
     <div className={styles.inputWrapper}>
       <input
@@ -12,7 +24,7 @@ const Input = ({ variant, type, id, name, placeholder, label, onChangeHandler, v
         onChange={onChangeHandler}
         value={value}
         autoComplete={autoComplete}
-        required
+          required
         className={styles.input}
       />
       <label htmlFor={id}>{label}</label>

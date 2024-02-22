@@ -1,38 +1,30 @@
-import { Formik } from "formik";
-import * as yup from "yup";
+// import * as yup from "yup";
+// import { useForm, FormProvider } from "react-hook-form";
 import styles from "./Form.module.css";
 
-const Form = ({ action, children }) => {
+const Form = ({ action, children, method, onSubmit }) => {
+  // const methods = useForm();
+
   return (
-    <Formik initialValues={""} validationSchema={formSchema}>
-      {({ handleSubmit }) => (
-        <form action={action} onSubmit={handleSubmit} className={styles.form}>
-          {children}
-        </form>
-      )}
-    </Formik>
+    <form
+      action={action}
+      method={method}
+      onSubmit={onSubmit}
+      className={styles.form}
+    >
+      {children}
+    </form>
+    // <FormProvider {...methods}>
+    //   <form
+    //     action={action}
+    //     method={method}
+    //     onSubmit={onSubmit}
+    //     noValidate
+    //     className={styles.form}
+    //   >
+    //     {children}
+    //   </form>
+    // </FormProvider>
   );
 };
-
-const defaultValues = {
-  item: "",
-  description: "",
-};
-
-const formSchema = yup.object({
-  username: yup.string().min(5, "Too short"),
-  // email: yup.string().email("Invalid email"),
-  password: yup
-    .string()
-    .min(8)
-    .matches(/[a-zA-Z]/)
-    .matches(/[0-9]/),
-});
-
-//   return (
-//     <form action={action} onSubmit={handleSubmit} className={styles.form}>
-//       {children}
-//     </form>
-//   );
-// };
 export default Form;
