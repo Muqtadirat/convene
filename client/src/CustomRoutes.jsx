@@ -1,21 +1,21 @@
 import { Route, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
 import Homepage from "./pages/Homepage";
 import NavBar from "./components/navigation/NavBar";
-// import SideBar from "./components/navigation/SideBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import AdminDashboard from "./pages/AdminDashboard";
-// import { AppShell } from "@mantine/core";
+import Profile from "./components/profile/Profile";
 
-const Layout = ({ children }) => {
-  return (
-    <>
-      {/* <SideBar /> */}
-      {/* <AppShell>{children}</AppShell> */}
-      {children}
-    </>
-  );
-};
+// const Layout = ({ children }) => {
+//   return (
+//     <>
+//       {/* <SideBar /> */}
+//       {/* <AppShell>{children}</AppShell> */}
+//       {children}
+//     </>
+//   );
+// };
 
 const CustomRoutes = () => {
   return (
@@ -34,8 +34,15 @@ const CustomRoutes = () => {
         path="/admindashboard"
         element={
           <Layout>
-            {/* <SideBar/> */}
             <AdminDashboard />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <Profile />
           </Layout>
         }
       />

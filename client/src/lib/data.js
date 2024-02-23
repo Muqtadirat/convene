@@ -8,7 +8,7 @@ export const NavItems = [
 
   {
     title: "Create Group",
-    href: "/",
+    href: "/signup",
   },
 
   {
@@ -27,11 +27,11 @@ export const NavItems = [
 export const SidebarItems = [
   {
     label: "Overview",
-    href: "/",
+    href: "/admindashboard",
     Icon: Elements,
   },
   {
-   label: "Meetups",
+    label: "Meetups",
     href: "/meetups",
     Icon: Books,
   },
