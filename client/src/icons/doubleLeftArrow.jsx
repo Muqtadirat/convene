@@ -10,6 +10,7 @@ export default function DoubleLeftArrow() {
           fill="none"
           fillRule="evenodd"
           stroke="currentColor"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
           transform="translate(5 6)"

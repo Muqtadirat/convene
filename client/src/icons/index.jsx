@@ -9,4 +9,5 @@ export { default as DoubleLeftArrow } from "./doubleLeftArrow";
 export { default as Bell } from "./bell"
 export { default as Books } from "./books"
 export { default as Elements } from "./elements"
-export {default as Pie} from "./pie"
+export { default as Pie } from "./pie"
+export {default as AlterFullLogo} from "./alterFullLogo"
