@@ -17,7 +17,7 @@ const NavBar = () => {
     <nav className={clsx(styles.nav)}>
       <div className="logo">
         <Link to="/" rel="noopener noreferrer">
-          {!openMenu? <FullLogo /> : <Logo />}
+          {!openMenu ? <FullLogo /> : <Logo />}
         </Link>
       </div>
 
@@ -33,9 +33,20 @@ const NavBar = () => {
             if (isButton === true) {
               return (
                 <li key={index}>
-                  <Link to={href} target="_self" rel="noopener noreferrer">
-                    <Button>{title}</Button>
-                  </Link>
+                  {!openMenu ? (
+                    <Link to={href} target="_self" rel="noopener noreferrer">
+                      <Button>{title}</Button>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={href}
+                      target="_self"
+                      rel="noopener noreferrer"
+                      className={styles.link}
+                    >
+                      {title}
+                    </Link>
+                  )}
                 </li>
               );
             }

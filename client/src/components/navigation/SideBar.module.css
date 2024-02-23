@@ -1,0 +1,103 @@
+.sidebar {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px, 15vw, 30vw);
+  height: 100vh;
+  background-color: var(--green-800);
+  gap: 24px;
+  padding: 24px 16px;
+  color: white;
+}
+
+.logoBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebarItems {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  gap: 30vh;
+}
+
+.menu {
+  /* background-color: bisque; */
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+  }
+}
+
+.listItem {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: var(--grey-300);
+}
+
+.listItem:hover {
+  background-color: var(--primary-color);
+  padding: 12px 8px;
+  border-radius: 4px;
+  color: white;
+}
+
+/* control styling */
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--grey-300);
+}
+
+.controlList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  li {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  li:hover {
+    background-color: var(--primary-color);
+    padding: 12px 8px;
+    border-radius: 4px;
+    color: white;
+  }
+}
+
+.profile {
+  padding: 2rem 1rem;
+  border-radius: 16px;
+  background-color: var(--green-900);
+  text-align: center;
+}
+
+.profile:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.logOut {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* link styling */
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:visited {
+  color: black;
+}
