@@ -41,20 +41,26 @@ nav {
     right: 0;
     top: 90px;
     width: 0px;
-    /* height: calc(100vh - 90px); */
     height: 90vh;
-    transition: all 0.3s ease-in;
+    transition: all 0.4s ease;
     overflow: hidden;
+    height: 40vh;
+    border: 2px solid var(--primary-color);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 
   .navList.active {
-    width: 270px;
-    background-color: var(--tertiary-font-color);
+    width: 200px;
     padding: 40px 32px;
   }
 
   .navList ul {
     flex-direction: column;
+  }
+
+  .navList li {
+    border-bottom: 1px solid;
   }
 }
 

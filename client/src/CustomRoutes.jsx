@@ -1,15 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import NavBar from "./components/navigation/NavBar";
-import SideBar from "./components/navigation/SideBar";
+// import SideBar from "./components/navigation/SideBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import AdminDashboard from "./pages/AdminDashboard";
+// import { AppShell } from "@mantine/core";
 
 const Layout = ({ children }) => {
   return (
     <>
-      <SideBar />
+      {/* <SideBar /> */}
+      {/* <AppShell>{children}</AppShell> */}
       {children}
     </>
   );
@@ -32,6 +34,7 @@ const CustomRoutes = () => {
         path="/admindashboard"
         element={
           <Layout>
+            {/* <SideBar/> */}
             <AdminDashboard />
           </Layout>
         }
