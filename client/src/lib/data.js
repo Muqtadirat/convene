@@ -1,4 +1,4 @@
-import { Books, Elements, Bell, Pie } from "src/icons";
+import { Books, Elements, Bell, Pie, CornerDownRight } from "src/icons";
 
 export const NavItems = [
   // {
@@ -34,6 +34,18 @@ export const SidebarItems = [
     label: "Meetups",
     href: "/meetups",
     Icon: Books,
+    subLink: [
+      {
+        label: "Create",
+        href: "/meetups",
+        Icon: CornerDownRight,
+      },
+      {
+        label: "Drafts",
+        href: "/meetups",
+        Icon: CornerDownRight,
+      }
+    ]
   },
   {
     label: "Notifications",

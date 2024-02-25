@@ -21,24 +21,44 @@ const SideBar = () => {
     <AppShell.Navbar p="md">
       <Stack>
         <>
-          {SidebarItems.map((SidebarItem, index) => {
-            const { label, href, Icon } = SidebarItem;
+          {SidebarItems.map((SidebarItem) => {
+            const { label, href, Icon, subLink } = SidebarItem;
 
             return (
               <NavLink
                 c="dark"
-                key={index}
+                key={label}
                 href={href}
                 label={label}
                 leftSection={<Icon />}
-                active={active === index}
-                onClick={() => setActive(index)}
-              ></NavLink>
+                active={active === label}
+                onClick={() => setActive(label)}
+              >
+                {subLink && (
+                  <>
+                    {subLink.map((item) => {
+                      const { label, href, Icon } = item;
+
+                      return (
+                        <NavLink
+                          c="dark"
+                          key={label}
+                          href={href}
+                          label={label}
+                          leftSection={<Icon />}
+                          active={active === label}
+                          onClick={() => setActive(label)}
+                        />
+                      );
+                    })}
+                  </>
+                )}
+              </NavLink>
             );
           })}
         </>
 
-        <Space h="xl" />
+        <Space h="lg" />
 
         <Stack>
           <Paper
