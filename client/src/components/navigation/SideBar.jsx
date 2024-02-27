@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarItems } from "src/lib/data";
-import { Avatar } from "../shared";
+import { Avatar, Tooltip } from "../shared";
 
 import {
   DoubleLeftArrow,
@@ -39,13 +39,14 @@ const SideBar = () => {
 
                 return (
                   <Link to={href} key={title} className={styles.link}>
-                    <li className={styles.menuItem}>
-                      <span className={styles.menuIcon}>
-                        <Icon />
-                      </span>
-                      <span className={styles.menuTitle}>{title}</span>
+                    <Tooltip text={title}>
+                      <li className={styles.menuItem}>
+                        <span className={styles.menuIcon}>
+                          <Icon />
+                        </span>
+                        <span className={styles.menuTitle}>{title}</span>
 
-                      {/* {subLink && (
+                        {/* {subLink && (
                   <ul className={styles.menuList}>
                     {subLink.map((item) => {
                       const { title, href, Icon } = item;
@@ -63,7 +64,8 @@ const SideBar = () => {
                     })}
                   </ul>
                 )} */}
-                    </li>
+                      </li>
+                    </Tooltip>
                   </Link>
                 );
               })}
@@ -84,28 +86,34 @@ const SideBar = () => {
             </div>
             <ul className={styles.menuList}>
               <Link to="/support" className={styles.link}>
-                <li className={styles.menuItem}>
-                  <span className={styles.menuIcon}>
-                    <Headset />
-                  </span>
-                  <span className={styles.menuTitle}>Support</span>
-                </li>
+                <Tooltip text="Support">
+                  <li className={styles.menuItem}>
+                    <span className={styles.menuIcon}>
+                      <Headset />
+                    </span>
+                    <span className={styles.menuTitle}>Support</span>
+                  </li>
+                </Tooltip>
               </Link>
               <Link to="/support" className={styles.link}>
-                <li className={styles.menuItem}>
-                  <span className={styles.menuIcon}>
-                    <Gear />
-                  </span>
-                  <span className={styles.menuTitle}>Settings</span>
-                </li>
+                <Tooltip text="Settings">
+                  <li className={styles.menuItem}>
+                    <span className={styles.menuIcon}>
+                      <Gear />
+                    </span>
+                    <span className={styles.menuTitle}>Settings</span>
+                  </li>
+                </Tooltip>
               </Link>
               <Link to="/" className={styles.link}>
-                <li className={clsx(styles.menuItem, styles.exit)}>
-                  <span className={styles.menuTitle}>Log Out</span>
-                  <span className={styles.menuIcon}>
-                    <Exit />
-                  </span>
-                </li>
+                <Tooltip text="Log Out">
+                  <li className={clsx(styles.menuItem, styles.exit)}>
+                    <span className={styles.menuTitle}>Log Out</span>
+                    <span className={styles.menuIcon}>
+                      <Exit />
+                    </span>
+                  </li>
+                </Tooltip>
               </Link>
             </ul>
           </section>
@@ -116,81 +124,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-
-// <AppShell.Navbar p="md">
-//   <Stack>
-//     <>
-//       {SidebarItems.map((SidebarItem) => {
-//         const { label, href, Icon, subLink } = SidebarItem;
-
-//         return (
-//           <NavLink
-//             c="dark"
-//             key={label}
-//             href={href}
-//             label={label}
-//             leftSection={<Icon />}
-//             active={active === label}
-//             onClick={() => setActive(label)}
-//           >
-//             {subLink && (
-//               <>
-//                 {subLink.map((item) => {
-//                   const { label, href, Icon } = item;
-
-//                   return (
-//                     <NavLink
-//                       c="dark"
-//                       key={label}
-//                       href={href}
-//                       label={label}
-//                       leftSection={<Icon />}
-//                       active={active === label}
-//                       onClick={() => setActive(label)}
-//                     />
-//                   );
-//                 })}
-//               </>
-//             )}
-//           </NavLink>
-//         );
-//       })}
-//     </>
-
-//     <Space h="lg" />
-
-//     <Stack>
-//       <Paper
-//         shadow="lg"
-//         radius="md"
-//         withBorder
-//         py="xs"
-//         ref={ref}
-//         bg={hovered ? "teal" : ""}
-//       >
-//         <Anchor href="/profile" c="dark" underline="never">
-//           <Avatar
-//             src="https://i.pinimg.com/564x/bd/48/e2/bd48e2e8011edf036313e8b4d876d864.jpg"
-//             size={50}
-//             mx="auto"
-//           />
-//           <Text ta="center">Taddy</Text>
-//         </Anchor>
-//       </Paper>
-//       <NavLink
-//         c="dark"
-//         href="/"
-//         label="Support"
-//         leftSection={<Headset />}
-//       />
-//       <NavLink
-//         c="dark"
-//         href="/settings"
-//         label="Settings"
-//         leftSection={<Gear />}
-//       />
-
-//       <NavLink c="dark" href="/" label="Log Out" rightSection={<Exit />} />
-//     </Stack>
-//   </Stack>
-// </AppShell.Navbar>
