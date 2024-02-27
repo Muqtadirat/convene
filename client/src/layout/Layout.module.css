@@ -1,0 +1,30 @@
+.layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 60px auto 60px;
+  grid-template-areas: "layoutSide layoutHeader layoutHeader" "layoutSide layoutMain layoutMain" "layoutSide layoutFooter layoutFooter";
+}
+
+.layout > * {
+  /* border: 1px solid;
+  margin: 1rem; */
+}
+
+.layoutHeader {
+  grid-area: layoutHeader;
+}
+
+.layoutMain {
+  grid-area: layoutMain;
+  width: 100vw;
+}
+
+.layoutSide {
+  grid-area: layoutSide;
+  /* width: clamp(200px, 15vw, 30vw); */
+  /* width: auto; */
+}
+
+.layoutFooter {
+  grid-area: layoutFooter;
+}

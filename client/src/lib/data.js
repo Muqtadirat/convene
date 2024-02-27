@@ -26,34 +26,34 @@ export const NavItems = [
 
 export const SidebarItems = [
   {
-    label: "Overview",
+    title: "Overview",
     href: "/admindashboard",
     Icon: Elements,
   },
   {
-    label: "Meetups",
+    title: "Meetups",
     href: "/meetups",
     Icon: Books,
     subLink: [
       {
-        label: "Create",
+        title: "Create",
         href: "/meetups",
         Icon: CornerDownRight,
       },
       {
-        label: "Drafts",
+        title: "Drafts",
         href: "/meetups",
         Icon: CornerDownRight,
-      }
-    ]
+      },
+    ],
   },
   {
-    label: "Notifications",
+    title: "Notifications",
     href: "/notifications",
     Icon: Bell,
   },
   {
-    label: "Analytics",
+    title: "Analytics",
     href: "/",
     Icon: Pie,
   },
