@@ -53,7 +53,9 @@
 }
 
 .exit {
+  display: flex;
   justify-content: space-between;
+  gap: 5vw;
 }
 
 .menuItem:hover {
@@ -75,7 +77,7 @@
 .menuGroup {
   display: flex;
   flex-direction: column;
-  gap: 16vh;
+  gap: 12vh;
 }
 
 /* Profile card */

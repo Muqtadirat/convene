@@ -1,0 +1,34 @@
+.dropdown {
+  width: 100%;
+  /* transform: translateX(-5%); */
+  color: inherit;
+  padding: 1rem 0;
+  /* overflow: hidden; */
+  cursor: pointer;
+}
+
+.dropdownMenu {
+  width: 100%;
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* 
+.dropdownMenu[data-variant= border]{
+    border: 2px solid;
+} */
+
+.dropdownItem {
+  background-color: blueviolet;
+  margin-left: 8px;
+  padding: 0.5rem;
+  /* padding: 0.5rem; */
+}
+
+.dropTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

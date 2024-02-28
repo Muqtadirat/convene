@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SidebarItems } from "src/lib/data";
-import { Avatar, Tooltip } from "../shared";
+import { Avatar, Tooltip, Dropdown } from "../shared";
 
 import {
   DoubleLeftArrow,
@@ -45,25 +45,6 @@ const SideBar = () => {
                           <Icon />
                         </span>
                         <span className={styles.menuTitle}>{title}</span>
-
-                        {/* {subLink && (
-                  <ul className={styles.menuList}>
-                    {subLink.map((item) => {
-                      const { title, href, Icon } = item;
-
-                      return (
-                        <li className={styles.submenuItem} key={title}>
-                          <Link to={href} className={styles.link}>
-                            <span className={styles.menuIcon}>
-                              <Icon />
-                            </span>
-                            <span className={styles.menuTitle}>{title}</span>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )} */}
                       </li>
                     </Tooltip>
                   </Link>
@@ -124,3 +105,35 @@ const SideBar = () => {
 };
 
 export default SideBar;
+
+{
+  /* {subLink && (
+                  <ul className={styles.menuList}>
+                    {subLink.map((item) => {
+                      const { title, href, Icon } = item;
+
+                      return (
+                        <li className={styles.submenuItem} key={title}>
+                          <Link to={href} className={styles.link}>
+                            <span className={styles.menuIcon}>
+                              <Icon />
+                            </span>
+                            <span className={styles.menuTitle}>{title}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )} */
+}
+
+{
+  /* <Dropdown
+          title="Drop"
+          items={[
+            { text: "Item 1", href: "/item1", leftIcon: "◀", rightIcon: "▶" },
+            { text: "Item 2", href: "/item2", leftIcon: "◀", rightIcon: "▶" },
+            // Add more items as needed
+          ]}
+        /> */
+}
