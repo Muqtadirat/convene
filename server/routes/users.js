@@ -2,14 +2,62 @@ var express = require("express");
 const router = express.Router();
 const UserModel = require("../models/user");
 
-router.post("/signup", async (req, res) => {
-  const user = await UserModel.create({
-    username: req.body.username,
-    password: req.body.password,
-    role: req.body.role,
-  });
-  return res.status(200).json(user);
-});
+const test = (req, res) => {
+  res.json("Test working");
+};
+
+const signupUser = async (req, res) => {
+  try {
+    const { username, password, confirmPassword, role } = req.body;
+
+    // validate username
+    if (!username) {
+      return res.json({
+        error: "Username should not be empty",
+      });
+    }
+    if (!/^.{3,}$/.test(username)) {
+      return res.json({ error: "Username should be at least 3 characters" });
+    }
+
+    // Check if username exists
+    const exist = await users.findOne({ username });
+    if (exist) {
+      return res.json({
+        error: "Username is taken",
+      });
+    }
+    // validate password
+    if (!password) {
+      return res.json({
+        error: "Password should not be empty",
+      });
+    }
+
+    if (!/(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(password)) {
+      return res.json({
+        error:
+          "Password should contain at least 6 characters, including uppercase and lowercase",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.json({ error: "Passwords do not match" });
+    }
+
+    role = "Regular";
+
+    const user = await users.create({
+      username,
+      password,
+      role,
+    });
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 router.post("/login", async (req, res) => {
   try {
@@ -35,6 +83,9 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.get("/", test);
+router.post("/signup", signupUser);
 
 module.exports = router;
 
