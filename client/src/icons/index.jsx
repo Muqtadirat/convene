@@ -13,4 +13,7 @@ export { default as Pie } from "./pie";
 export { default as AlterFullLogo } from "./alterFullLogo";
 export { default as Exit } from "./exit";
 export { default as Gear } from "./gear";
-export {default as Headset} from "./headset"
+export { default as Headset } from "./headset"
+export { default as CornerDownRight } from "./cornerDownRight"
+export { default as ChevronRight } from "./chevronRight"
+export {default as ChevronDown} from "./chevronDown"
