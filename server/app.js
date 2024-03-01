@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+const dotenv = require("dotenv").config();
 var mongoose = require("mongoose");
 var path = require("path");
 var cookieParser = require("cookie-parser");
@@ -11,16 +12,13 @@ const usersRouter = require("./routes/users");
 
 var app = express();
 
-const uri =
-  "mongodb+srv://Taddy:MuqtadirMongoDB@convene.s5ffs1a.mongodb.net/?retryWrites=true&w=majority&appName=Convene";
-
 mongoose
-  .connect(uri)
+  .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB Atlas");
   })
   .catch((err) => {
-    console.error("Error connecting to MongoDB Atlas: ", err);
+    console.log("Error connecting to MongoDB Atlas: ", err);
   });
 
 // view engine setup
