@@ -1,5 +1,7 @@
 import axios from "axios";
-const apiUrl = import.meta.env.VITE_POSTMAN_API_URL;
+// const apiUrl = import.meta.env.VITE_POSTMAN_API_URL;
+const apiUrl = import.meta.env.VITE_BACKEND_API_URL
+
 
 export default async function registerUser(userData) {
   try {

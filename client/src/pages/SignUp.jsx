@@ -33,18 +33,15 @@ const SignUp = () => {
   const signupUser = async (e) => {
     e.preventDefault();
 
-    const { username, password, confirmPassword } = formData;
-    const role = "Admin";
+    const { username, password, confirmPassword, role } = formData;
     console.log("Form Data:", formData);
     try {
       const data = await registerUser({
         username,
         password,
         confirmPassword,
-        role,
+        role: role,
       });
-
-      console.log("Data:", data);
 
       if (data.error) {
         toast.error(data.error);
@@ -67,7 +64,7 @@ const SignUp = () => {
       </div>
 
       <div className={styles.formWrapper}>
-        <Form action="/signup" method="post" onSubmit={signupUser}>
+        <Form action="/v1/users/signup" method="post" onSubmit={signupUser}>
           <Link to="/">
             <div className={styles.backBtn}>
               <BackArrow alt="Back arrow" />
@@ -103,7 +100,7 @@ const SignUp = () => {
 
             <Button
               type="button"
-              onClick={togglePasswordVisibility}
+              onClickHandler={togglePasswordVisibility}
               className={styles.passBtn}
             >
               {showPassword ? <EyeClosed /> : <EyeOpen />}
@@ -123,7 +120,7 @@ const SignUp = () => {
 
             <Button
               type="button"
-              onClick={togglePasswordVisibility}
+              onClickHandler={togglePasswordVisibility}
               className={styles.passBtn}
             >
               {showPassword ? <EyeClosed /> : <EyeOpen />}
@@ -135,7 +132,7 @@ const SignUp = () => {
 
         <p className={styles.switchForm}>
           Already have an account?{" "}
-          <Link className="link" to="/Login">
+          <Link className={styles.link} to="/Login">
             Login
           </Link>
         </p>

@@ -11,7 +11,7 @@ import { Toaster } from "react-hot-toast";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <MantineProvider>
-      <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+      <Toaster position="bottom-right" toastOptions={{ duration: 3000 }} />
       <Router>
         <App />
       </Router>

@@ -138,7 +138,7 @@ const Login = () => {
 
         <p>
           {`Don't have an account?`}{" "}
-          <Link className="link" to="/signUp">
+          <Link className={styles.link} to="/signUp">
             Sign Up
           </Link>
         </p>
