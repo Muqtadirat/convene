@@ -81,17 +81,19 @@ const loginUser = async (req, res) => {
     const matchPassword = await comparePassword(password, user.password);
 
     // Determine the redirect URL based on user role
-    if (matchPassword) {
-      const redirectUrl =
-        user.role === "Admin" ? "/admindashboard" : "/dashboard";
-      return res.json(redirectUrl);
-    }
-
     if (!matchPassword) {
       return res.json({
         error: "Incorrect Password",
       });
     }
+
+    let redirectUrl = "/dashboard";
+
+    if (user.role === "Admin") {
+      redirectUrl = "/admindashboard";
+    }
+
+    return res.json({ redirectUrl });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -102,48 +104,3 @@ router.post("/signup", signupUser);
 router.post("/login", loginUser);
 
 module.exports = router;
-
-// const user = await UserModel.findOne({ username: req.body.username });
-
-// if (user) {
-//   const pass = req.body.password === user.password;
-
-//   if (pass) {
-//     // Determine the redirect URL based on user role
-//     const redirectUrl =
-//       user.role === "Admin" ? "/admindashboard" : "/dashboard";
-
-//     // Send a response back to the client with the redirect URL
-//     res.status(200).json({ redirectUrl });
-//   } else {
-//     res.status(401).json({ message: "Invalid username or password" });
-//   }
-// } else {
-//   res.status(404).json({ message: "User not found" });
-// }
-// const users = [
-//   {
-//     username: "Taddy",
-//     password: "Xaviera",
-//     role: "Admin",
-//   },
-//   {
-//     username: "Zero6",
-//     password: "Weaver",
-//     role: "Regular",
-//   },
-// ];
-
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.json({users})
-// });
-
-// // POST route to create a new user
-// router.post('/', function(req, res, next) {
-//   const { username, password, role } = req.body;
-//   const newUser = { username, password, role };
-//   users.push(newUser);
-
-//   res.status(201).json({ message: 'User created successfully', user: newUser });
-// });
