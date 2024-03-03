@@ -32,13 +32,12 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const { username, password, role } = formData;
+    const { username, password } = formData;
 
     try {
       const data = await loginUser({
         username,
         password,
-        role: role,
       });
 
       if (data.error) {
@@ -46,7 +45,7 @@ const Login = () => {
       } else {
         setFormData({});
         toast.success("Login Successful");
-        navigate(role === "Admin" ? "/admindashboard" : "/dashboard");
+        navigate(data.redirectUrl);
       }
     } catch (error) {
       console.log(error);
