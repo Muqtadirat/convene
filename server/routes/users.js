@@ -1,11 +1,14 @@
 var express = require("express");
 const router = express.Router();
 const UserModel = require("../models/user");
+const { hashPassword, comparePassword } = require("../helpers/auth");
+// const jwt = require("jsonwebtoken");
 
 const test = (req, res) => {
   res.json("Test working");
 };
 
+// Signup Endpoint
 const signupUser = async (req, res) => {
   try {
     const { username, password, confirmPassword } = req.body;
@@ -45,11 +48,13 @@ const signupUser = async (req, res) => {
       return res.json({ error: "Passwords do not match" });
     }
 
+    const hashedPassword = await hashPassword(password);
+
     let role = "Regular";
 
     const user = await UserModel.create({
       username,
-      password,
+      password: hashedPassword,
       role,
     });
 
@@ -59,36 +64,63 @@ const signupUser = async (req, res) => {
   }
 };
 
-router.post("/login", async (req, res) => {
+// Login Endpoint
+const loginUser = async (req, res) => {
   try {
-    const user = await UserModel.findOne({ username: req.body.username });
+    const { username, password } = req.body;
 
-    if (user) {
-      const pass = req.body.password === user.password;
+    const user = await UserModel.findOne({ username });
 
-      if (pass) {
-        // Determine the redirect URL based on user role
-        const redirectUrl =
-          user.role === "Admin" ? "/admindashboard" : "/dashboard";
+    if (!user) {
+      return res.json({
+        error: "User not found",
+      });
+    }
 
-        // Send a response back to the client with the redirect URL
-        res.status(200).json({ redirectUrl });
-      } else {
-        res.status(401).json({ message: "Invalid username or password" });
-      }
-    } else {
-      res.status(404).json({ message: "User not found" });
+    // check password
+    const matchPassword = await comparePassword(password, user.password);
+
+    // Determine the redirect URL based on user role
+    if (matchPassword) {
+      const redirectUrl =
+        user.role === "Admin" ? "/admindashboard" : "/dashboard";
+      return res.json(redirectUrl);
+    }
+
+    if (!matchPassword) {
+      return res.json({
+        error: "Incorrect Password",
+      });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
+};
 
 router.get("/", test);
 router.post("/signup", signupUser);
+router.post("/login", loginUser);
 
 module.exports = router;
 
+// const user = await UserModel.findOne({ username: req.body.username });
+
+// if (user) {
+//   const pass = req.body.password === user.password;
+
+//   if (pass) {
+//     // Determine the redirect URL based on user role
+//     const redirectUrl =
+//       user.role === "Admin" ? "/admindashboard" : "/dashboard";
+
+//     // Send a response back to the client with the redirect URL
+//     res.status(200).json({ redirectUrl });
+//   } else {
+//     res.status(401).json({ message: "Invalid username or password" });
+//   }
+// } else {
+//   res.status(404).json({ message: "User not found" });
+// }
 // const users = [
 //   {
 //     username: "Taddy",
