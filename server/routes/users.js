@@ -8,7 +8,7 @@ const test = (req, res) => {
 
 const signupUser = async (req, res) => {
   try {
-    const { username, password, confirmPassword, role } = req.body;
+    const { username, password, confirmPassword } = req.body;
 
     // validate username
     if (!username) {
@@ -21,7 +21,7 @@ const signupUser = async (req, res) => {
     }
 
     // Check if username exists
-    const exist = await users.findOne({ username });
+    const exist = await UserModel.findOne({ username });
     if (exist) {
       return res.json({
         error: "Username is taken",
@@ -45,9 +45,9 @@ const signupUser = async (req, res) => {
       return res.json({ error: "Passwords do not match" });
     }
 
-    role = "Regular";
+    let role = "Regular";
 
-    const user = await users.create({
+    const user = await UserModel.create({
       username,
       password,
       role,
