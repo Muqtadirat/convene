@@ -1,4 +1,3 @@
-// import { useFormContext } from "react-hook-form";
 import styles from "./Input.module.css";
 
 const Input = ({
@@ -12,7 +11,7 @@ const Input = ({
   value,
   autoComplete,
 }) => {
-  // const { register } = useFormContext();
+  
   return (
     <div className={styles.inputWrapper}>
       <input
@@ -24,7 +23,7 @@ const Input = ({
         onChange={onChangeHandler}
         value={value}
         autoComplete={autoComplete}
-          required
+        // required
         className={styles.input}
       />
       <label htmlFor={id}>{label}</label>
