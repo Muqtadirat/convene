@@ -34,7 +34,6 @@ const SignUp = () => {
     e.preventDefault();
 
     const { username, password, confirmPassword, role } = formData;
-    console.log("Form Data:", formData);
     try {
       const data = await registerUser({
         username,
