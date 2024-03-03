@@ -1,34 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "src/components/form";
 import { Input, Button } from "src/components/shared";
 import Biker from "../assets/Pixel_Bikers.mp4";
 import { FullLogo, EyeClosed, EyeOpen, BackArrow } from "src/icons";
-import FetchUsers from "src/lib/api/users";
+import loginUser from "src/lib/api/loginUser";
+import { toast } from "react-hot-toast";
 import styles from "./styles/Forms.module.css";
 
 const Login = () => {
-  const [users, setUsers] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-
-  useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const data = await FetchUsers();
-        setUsers(data.users);
-      } catch (error) {
-        console.error("Error fetching user:", error);
-      }
-    };
-
-    getUsers();
-  }, []);
 
   const navigate = useNavigate();
 
@@ -44,28 +29,27 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const user = users.find(
-      (user) => user.username === formData.username
-      // user.password === formData.password
-    );
+    const { username, password, role } = formData;
 
-    if (user) {
-      if (user?.password.trim() === formData.password.trim()) {
-        setIsSubmitted(true);
-        setError("");
-        {
-          user.role === "Admin"
-            ? navigate("/admindashboard")
-            : navigate("/dashboard");
-        }
+    try {
+      const data = await loginUser({
+        username,
+        password,
+        role: role,
+      });
+
+      if (data.error) {
+        toast.error(data.error);
       } else {
-        setError("Invalid Password");
+        setFormData({});
+        toast.success("Login Successful");
+        navigate(role === "Admin" ? "/admindashboard" : "/dashboard");
       }
-    } else {
-      setError("User not found");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -78,7 +62,7 @@ const Login = () => {
       </div>
 
       <div className={styles.formWrapper}>
-        <Form action="" method="get" onSubmit={handleSubmit}>
+        <Form action="/v1/users/login" method="post" onSubmit={handleLogin}>
           <Link to="/">
             <div className={styles.backBtn}>
               <BackArrow alt="Back arrow" />
@@ -125,15 +109,7 @@ const Login = () => {
             Forgot password? <Link className="link">Reset</Link>
           </p>
 
-          <Button
-            type="submit"
-            onClickHandler={onsubmit}
-            disabled={isSubmitted}
-          >
-            Login
-          </Button>
-
-          {error && <div className={styles.error}>{error}</div>}
+          <Button type="submit">Login</Button>
         </Form>
 
         <p>
